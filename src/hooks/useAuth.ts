@@ -10,12 +10,15 @@ import {
   loginWithOutlook,
   loginWithEmail,
   getAuthErrorMessage,
-  registerWithEmail
+  registerWithEmail,
+  resetPassword
 } from "@/services/authService"; // ajuste o caminho se necessário
+import { useToast } from "@/components/layouts/toast";
 
 export const useAuth = () => {
     const [socialError, setSocialError] = useState<string | null>(null);
     const router = useRouter();
+    const { addToast } = useToast();
 
     //register
     const handleRegisterAction = async (data: RegisterData): Promise<any> => {
@@ -92,12 +95,24 @@ export const useAuth = () => {
     const handleMicrosoftLogin = () => handleSocialLogin(loginWithOutlook);
     const handleFacebookLogin = () => handleSocialLogin(loginWithFacebook);
 
+    const handleResetPassword = async (data: { email: string }): Promise<any> => {
+        try {
+            await resetPassword(data.email);
+            addToast('E-mail de recuperação enviado! Verifique sua caixa de entrada.', 'success');
+            return {};
+        } catch (error: any) {
+            const message = getAuthErrorMessage(error.code);
+            return { error: message };
+        }
+    };
+
     return {
         handleRegisterAction,
         handleLoginAction,
         handleGoogleLogin,
         handleMicrosoftLogin,
         handleFacebookLogin,
+        handleResetPassword,
         socialError
     };
 }

@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut, sendPasswordResetEmail } from "firebase/auth";
 import { auth, googleProvider, facebookProvider, outlookProvider } from "../lib/firebase";
 import { deleteSession } from "@/actions/auth/session-action";
 
@@ -31,6 +31,7 @@ const FIREBASE_ERRORS: Record<string, string> = {
   'auth/invalid-credential': 'Dados de acesso inválidos.',
   'auth/too-many-requests': 'Muitas tentativas. Tente novamente mais tarde.',
   'auth/email-already-in-use': 'Este e-mail já está em uso.',
+  'auth/invalid-email': 'O endereço de e-mail é inválido.',
 };
 
 // 2. Crie a função que traduz o código vindo do Firebase
@@ -53,4 +54,8 @@ export const loginWithEmail = (email:string, password:string) =>
 export const logout = async () => {
   await signOut(auth);
   await deleteSession(); // Limpa o cookie no servidor
+};
+
+export const resetPassword = async (email: string): Promise<void> => {
+  await sendPasswordResetEmail(auth, email);
 };

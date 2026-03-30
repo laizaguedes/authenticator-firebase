@@ -167,7 +167,7 @@ export default function LoginPage() {
             <span className="text-[#5A5A5A]">Esqueceu a senha?</span>
             {" "}
             <Link
-              href="#"
+              href="/forgot-password"
               className="text-[#13C1C5] font-bold hover:text-[#0E8A8D] transition-colors"
             >
               Clique aqui.
