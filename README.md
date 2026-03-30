@@ -1,4 +1,4 @@
-# Authenticator Firebase — Next.js
+# Autenticação com Firebase — Next.js
 
 Sistema de autenticação completo com **Firebase Auth** integrado a um projeto **Next.js 16** usando App Router. Suporta login e cadastro por **e-mail/senha**, **Google**, **Facebook** e **Microsoft (Outlook)**, com sessão gerenciada por cookie `httpOnly` no servidor e estrutura pronta para integração com um backend externo (ex: Java/Spring + PostgreSQL).
 
@@ -175,7 +175,7 @@ NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=000000000000
 NEXT_PUBLIC_FIREBASE_APP_ID=1:000000000000:web:abc123
 NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=G-XXXXXXXXXX
 
-# URL base da sua API backend (ex: Spring Boot)
+# URL base da sua API backend
 NEXT_PUBLIC_API_URL=http://localhost:8080
 ```
 
